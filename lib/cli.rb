@@ -6,8 +6,8 @@ class CLI < Thor
   desc "start", "Start the watch server."
   def start(filename=nil)
   	$servers= {server:'foo'}
+	Watch::App.run!
   end
 end
 
- run 	Watch::App.new
 CLI.start(ARGV)
