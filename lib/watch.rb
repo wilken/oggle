@@ -4,6 +4,9 @@ require 'sinatra/base'
 
 module Watch
 	class App < Sinatra::Base
+
+		enable :run
+
 		get "/" do
 			erb :index
 		end
