@@ -1,5 +1,13 @@
 #!/usr/bin/env ruby
 require 'sinatra'
 require 'watch'
+require 'thor'
 
-enable :run 
+class MyCLI < Thor
+  desc "hello NAME", "say hello to NAME"
+  option :start
+  def start
+	enable :run 
+  end
+end
+MyCLI.start(ARGV)

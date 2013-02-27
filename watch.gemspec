@@ -17,10 +17,8 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency "eventmachine"
-  gem.add_dependency "em-http-request"
-  gem.add_dependency "em-websocket"
   gem.add_dependency "sinatra"
+  gem.add_dependency "sinatra-websocket"
   gem.add_dependency "thin"
   gem.add_dependency "thor"
 
