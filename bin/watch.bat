@@ -1,1 +1,1 @@
-ruby watch
+ruby watch-start.rb
