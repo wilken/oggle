@@ -4,7 +4,7 @@ require 'watch'
 require 'thor'
 
 class CLI < Thor
-  option :start
+  desc "start", "Start the watch server."
   def start
 	enable :run 
   end
