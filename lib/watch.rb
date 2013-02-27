@@ -12,8 +12,8 @@ module Watch
 		set :sockets, []
 		set :run, false
 
-		get '/index.html' do
-	  		p "#{$servers} goog"
+		get '/' do
+	  		p "#{@servers} goog"
     		erb :index
 		end
 	end
