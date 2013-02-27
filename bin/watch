@@ -3,4 +3,3 @@ require 'sinatra'
 require 'watch'
 require 'cli'
 
-CLI.start(ARGV)

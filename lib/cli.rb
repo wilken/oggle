@@ -1,13 +1,11 @@
 require 'thor'
-require 'pry'
+require 'watch'
 
 class CLI < Thor
   desc "start", "Start the watch server."
-  option :port
   def start(filename=nil)
-  	binding.pry
-  	p options
-  	set :port, options[:port] if options[:port]
-	enable :run 
+	enable :run
   end
 end
+
+CLI.start(ARGV)
