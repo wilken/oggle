@@ -2,15 +2,7 @@ require "watch/version"
 require 'sinatra'
 require 'sinatra/base'
 
-module Watch
-	class App < Sinatra::Base
-
-		enable :run
-
-		get "/" do
-			erb :index
-		end
-	end
+enable :run
+get "/" do
+	erb :index
 end
-
-run Watch::App.new
