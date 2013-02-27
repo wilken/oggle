@@ -8,7 +8,7 @@ class CLI < Thor
   desc "start", "Start the watch server."
   def start(filename=nil)
 	Watch::App.run!(
-  		servers:{server:'foo'}
+  		servers:{servers:'foo'}
 	)
   end
 end

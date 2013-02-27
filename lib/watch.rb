@@ -13,7 +13,7 @@ module Watch
 		set :run, false
 
 		get '/' do
-	  		p "#{@servers} goog"
+	  		p "#{settings.servers} goog"
     		erb :index
 		end
 	end
