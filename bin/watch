@@ -5,8 +5,9 @@ require 'thor'
 
 class CLI < Thor
   desc "start", "Start the watch server."
-  def start(port=nil)
-  	set :port, port if port
+  option :port
+  def start(filename=nil)
+  	set :port, option[:port] if option[:port]
 	enable :run 
   end
 end
