@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'watch-start'
+require 'sinatra'
+run Watch::App
