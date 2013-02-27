@@ -3,11 +3,10 @@ require 'sinatra'
 require 'watch'
 require 'thor'
 
-class MyCLI < Thor
-  desc "hello NAME", "say hello to NAME"
+class CLI < Thor
   option :start
   def start
 	enable :run 
   end
 end
-MyCLI.start(ARGV)
+CLI.start(ARGV)
