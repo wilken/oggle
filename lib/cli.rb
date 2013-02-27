@@ -1,10 +1,12 @@
+require 'sinatra/base'
 require 'thor'
 require 'watch'
 
 class CLI < Thor
   desc "start", "Start the watch server."
   def start(filename=nil)
-	enable :run
+  	$servers= {server:'foo'}
+  	enable :run
   end
 end
 

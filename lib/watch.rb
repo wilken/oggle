@@ -2,16 +2,19 @@ require "watch/version"
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra-websocket'
-
+require 'pry'
 
 set :root,  File.expand_path('..', __FILE__)
 set :views, Proc.new { File.join(root, "views") }
 set :server, 'thin'
 set :sockets, []
 
-get '/' do
+get '/index.html' do
+	binding.pry
   if !request.websocket?
-    erb :index
+  	binding.pry
+  	p "#{$servers} goog"
+    #erb :index
   else
     request.websocket do |ws|
       ws.onopen do
