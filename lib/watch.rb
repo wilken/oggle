@@ -1,5 +1,6 @@
 require "watch/version"
 require 'sinatra'
+require 'sinatra/base'
 
 module Watch
 	class App < Sinatra::Base
