@@ -12,3 +12,5 @@ module Watch
 		end
 	end
 end
+
+run Watch::App.new
