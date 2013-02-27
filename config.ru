@@ -3,5 +3,4 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'watch'
 require 'cli'
 
-MyCLI.start(ARGV)
-run Sinatra::Application
+CLI.start(ARGV)

@@ -1,15 +1,6 @@
 #!/usr/bin/env ruby
 require 'sinatra'
 require 'watch'
-require 'thor'
+require 'cli'
 
-class CLI < Thor
-  desc "start", "Start the watch server."
-  option :port
-  def start(filename=nil)
-  	p options
-  	set :port, options[:port] if options[:port]
-	enable :run 
-  end
-end
 CLI.start(ARGV)
