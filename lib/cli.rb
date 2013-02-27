@@ -7,11 +7,9 @@ set :run, false
 class CLI < Thor
   desc "start", "Start the watch server."
   def start(filename=nil)
-  	module Watch 
-		class App < Sinatra::Base
-  			@servers= {server:'foo'}
-  		end
-  	end
+  	Watch::App.default_options.merge!(
+  		servers:{server:'foo'}
+	)
 	Watch::App.run!
   end
 end
