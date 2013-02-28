@@ -3,6 +3,7 @@ require 'thor'
 require 'watch'
 
 set :run, false
+set :port, 8000
 
 class CLI < Thor
   desc "start FILE", "Start the watch server watching files in FILE."
