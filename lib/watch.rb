@@ -4,16 +4,6 @@ require 'sinatra-websocket'
 
 module Watch 
 	class App < Sinatra::Base
-		configure do
-	  		EM.next_tick do
-	  			p "#{settings} goog"
-	  		end
-	  		EM.run do
-	  			EM.add_periodic_timer 10 do
-	  				poll({url: 'http://eb.dk'})
-	  			end  
-	  		end
-		end
 		helpers do
 			def poll(server)
  				http = EM::HttpRequest.new(server['url'])
@@ -22,6 +12,14 @@ module Watch
       				p 'ok'
       			}
       		end
+		end
+		configure do
+	  		EM.next_tick do
+	  			p "#{settings.servers} goog"
+	  			EM.add_periodic_timer 10 do
+	  				poll({url: 'http://eb.dk'})
+	  			end  
+	  		end
 		end
 		get '/' do
     		erb :index
