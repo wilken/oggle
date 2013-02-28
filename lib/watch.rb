@@ -10,7 +10,7 @@ module Watch
 	  		}
 	  		p EM
 	  		EM.add_periodic_timer 10 do
-	  			poll(url : 'http://eb.dk')
+	  			poll({url: 'http://eb.dk'})
 	  		end  
 		end
 		helpers do
