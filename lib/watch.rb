@@ -18,7 +18,7 @@ module Watch
 	  		EM.next_tick do
 	  			p "#{settings.servers} goog"
 	  			EM.add_periodic_timer 10 do
-	  				http = EM::HttpRequest.new('http://eb.dk')
+	  				http = EM::HttpRequest.new('http://eb.dk').get
 			    	http.errback { p 'Uh oh'}
       				http.callback {	p 'ok'}
 	  			end  
