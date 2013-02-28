@@ -1,6 +1,7 @@
 require "watch/version"
 require 'sinatra/base'
 require 'sinatra-websocket'
+require 'em-http-request'
 
 module Watch 
 	class App < Sinatra::Base
