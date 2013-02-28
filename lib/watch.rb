@@ -9,11 +9,12 @@ module Watch
 			servers.each do|server|
 				p server
 				http = EM::HttpRequest.new(server[1]['url']).get
-			    http.errback { p "#{server[1]['url']} down"}
-				http.callback {
-					p "#{server[1]['url']} ok"
+			    http.errback do
 					EM.next_tick { settings.sockets.each{|s| s.send("#{server[1]['url']} ok") } }
-				}
+			    end
+				http.callback do
+					EM.next_tick { settings.sockets.each{|s| s.send("#{server[1]['url']} ok") } }
+				end
 			end
 		end
 
