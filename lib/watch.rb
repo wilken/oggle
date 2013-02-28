@@ -10,7 +10,7 @@ module Watch
 		    http.errback { p "#{server['url']} down"}
 			http.callback {
 				p "#{server['url']} ok"
-				settings.sockets.each{|s| s.send("#{server['url']} ok")
+				EM.next_tick { settings.sockets.each{|s| s.send("#{server['url']} ok") } }
 			}
 		end
 
