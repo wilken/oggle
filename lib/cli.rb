@@ -11,7 +11,7 @@ class CLI < Thor
   		servers:{
   			servers:'foo',
   		},
-		port:8000,
+		port:option[:port}||4567,
 		run:false
 
 	)
