@@ -12,7 +12,8 @@ module Watch
 		Watch::App.run!(
 			servers: servers['servers'],
 	  		port: options[:port]||4567,
-			run: false
+			run: false,
+			server: 'thin'
 		)
 	  end
 	end
