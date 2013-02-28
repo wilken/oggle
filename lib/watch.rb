@@ -6,7 +6,7 @@ require 'em-http-request'
 module Watch 
 	class App < Sinatra::Base
 		def self.poll(server)
-			http = EM::HttpRequest.new(server['url']).get
+			http = EM::HttpRequest.new(server[:url]).get
 		    http.errback { p 'Uh oh'}
 			http.callback {
 				p 'ok'
