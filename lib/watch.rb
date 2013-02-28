@@ -16,9 +16,9 @@ module Watch
       	configure do
 	  		EM.next_tick do
 	  			p "#{settings.servers} goog"
-  				Watch::App.poll({'url': 'http://eb.dk'})
+  				Watch::App.poll({'url'=> 'http://eb.dk'})
 	  			EM.add_periodic_timer 10 do
-	  				Watch::App.poll({'url': 'http://eb.dk'})
+	  				Watch::App.poll({'url'=> 'http://eb.dk'})
 	  			end  
 	  		end
 		end
