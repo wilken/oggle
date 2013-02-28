@@ -6,7 +6,7 @@ module Watch
 	class App < Sinatra::Base
 		configure do
 	  		EM.next_tick do
-	  			p "#{settings.servers} goog"
+	  			p "#{settings} goog"
 	  		end
 	  		EM.run do
 	  			EM.add_periodic_timer 10 do
