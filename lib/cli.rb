@@ -10,7 +10,7 @@ module Watch
 	  def start(file=nil)
 		servers = YAML.load_file(file)
 		Watch::App.run!(
-
+			servers: servers['servers'],
 	  		port: options[:port]||4567,
 			run: false
 		)
