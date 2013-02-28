@@ -5,21 +5,24 @@ require 'em-http-request'
 
 module Watch 
 	class App < Sinatra::Base
-		def self.poll(server)
-			http = EM::HttpRequest.new(server['url']).get
-		    http.errback { p "#{server['url']} down"}
-			http.callback {
-				p "#{server['url']} ok"
-				EM.next_tick { settings.sockets.each{|s| s.send("#{server['url']} ok") } }
-			}
+		def self.poll(servers)
+			servers.each do|server|
+				p server
+				http = EM::HttpRequest.new(server['url']).get
+			    http.errback { p "#{server['url']} down"}
+				http.callback {
+					p "#{server['url']} ok"
+					EM.next_tick { settings.sockets.each{|s| s.send("#{server['url']} ok") } }
+				}
+			end
 		end
 
       	configure do
 	  		EM.next_tick do
 	  			p "#{settings.servers} goog"
-  				Watch::App.poll({'url'=> 'http://eb.dk'})
+  				Watch::App.poll(settings.servers)
 	  			EM.add_periodic_timer 10 do
-	  				Watch::App.poll({'url'=> 'http://eb.dk'})
+	  				Watch::App.poll(settings.servers)
 	  			end  
 	  		end
 		end
