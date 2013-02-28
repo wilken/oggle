@@ -7,7 +7,6 @@ module Watch
 	class App < Sinatra::Base
 		def self.poll(servers)
 			servers.each do|server|
-				p server
 				http = EM::HttpRequest.new(server[1]['url']).get
 			    http.errback do
 					EM.next_tick { settings.sockets.each{|s| s.send("#{server[1]['url']} ok") } }
@@ -20,7 +19,7 @@ module Watch
 
       	configure do
 	  		EM.next_tick do
-	  			p "#{settings.servers} goog"
+	  			p "Initializing poll"
   				Watch::App.poll(settings.servers)
 	  			EM.add_periodic_timer 10 do
 	  				Watch::App.poll(settings.servers)
