@@ -13,7 +13,8 @@ module Watch
 			servers: servers['servers'],
 	  		port: options[:port]||4567,
 			run: false,
-			server: 'thin'
+			server: 'thin',
+			sockets: []
 		)
 	  end
 	end
