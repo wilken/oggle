@@ -8,8 +8,19 @@ module Watch
 	  		EM.next_tick {
 	  			p "#{settings.servers} goog"
 	  		}
+	  		EM::add_periodic_timer 10 do
+	  			poll('http://eb.dk')
+	  		end  
 		end
-
+		helpers do
+			def poll(server)
+ 				http = EM::HttpRequest.new(server['url'])
+			    http.errback { p 'Uh oh'}
+      			http.callback {
+      				p 'ok'
+      			}
+      		end
+		end
 		get '/' do
     		erb :index
 		end

@@ -7,7 +7,7 @@ module Watch
 	class CLI < Thor
 	  desc "start FILE", "Start the watch server watching files in FILE."
 	  method_option :port,:aliases => "-p", :desc => "Webserver port"
-	  def start(file=nil)
+	  def start(file)
 		servers = YAML.load_file(file)
 		Watch::App.run!(
 			servers: servers['servers'],
