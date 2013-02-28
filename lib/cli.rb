@@ -10,9 +10,9 @@ class CLI < Thor
 	servers = YAML.load_file(file)
 	Watch::App.run!(
   		servers:{
-  			servers:'foo',
+  			servers['servers']
   		},
-		port:option[:port]||4567,
+		port:options[:port]||4567,
 		run:false
 
 	)
