@@ -8,11 +8,11 @@ module Watch
 		def self.poll(servers)
 			servers.each do|server|
 				p server
-				http = EM::HttpRequest.new(server['url']).get
-			    http.errback { p "#{server['url']} down"}
+				http = EM::HttpRequest.new(server[1]['url']).get
+			    http.errback { p "#{server[1]['url']} down"}
 				http.callback {
-					p "#{server['url']} ok"
-					EM.next_tick { settings.sockets.each{|s| s.send("#{server['url']} ok") } }
+					p "#{server[1]['url']} ok"
+					EM.next_tick { settings.sockets.each{|s| s.send("#{server[1]['url']} ok") } }
 				}
 			end
 		end
