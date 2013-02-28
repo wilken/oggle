@@ -1,0 +1,9 @@
+servers:
+ Syddansk:
+  url: http://eb.dk
+  status: 200
+  check: fodbold
+ AU:
+  url: http://politiken.dk
+  status: 200
+  check: fodbold
