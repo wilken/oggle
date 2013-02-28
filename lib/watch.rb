@@ -6,11 +6,7 @@ require 'pry'
 
 module Watch 
 	class App < Sinatra::Base
-		set :root,  File.expand_path('..', __FILE__)
-		set :views, Proc.new { File.join(root, "views") }
-		set :server, 'thin'
-		set :sockets, []
-		set :run, false
+
 
 		get '/' do
 	  		p "#{settings.servers} goog"
