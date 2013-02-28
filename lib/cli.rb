@@ -10,6 +10,7 @@ class CLI < Thor
   method_option :port,:aliases => "-p", :desc => "Webserver port"
   def start(file=nil)
   	p options
+  	p Watch::App.options
 	Watch::App.options.merge!(
   		:run  => false,
   		:env  => :production,
