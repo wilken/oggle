@@ -12,7 +12,7 @@ class CLI < Thor
 	Watch::App.run!(
   		servers:{
   			servers:'foo',
-  			port:options[:port]||4567
+  			port:8000
   		}
 	)
   end
