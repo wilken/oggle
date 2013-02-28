@@ -5,9 +5,9 @@ require 'watch'
 set :run, false
 
 class CLI < Thor
-  desc "start", "Start the watch server."
-  option :port
-  def start(filename=nil)
+  desc "start FILE", "Start the watch server watching files in FILE."
+  method_option :port,:aliases => "-p", :desc => "Webserver port"
+  def start(file=nil)
 	Watch::App.run!(
   		servers:{
   			servers:'foo',
