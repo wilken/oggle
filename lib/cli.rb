@@ -1,17 +1,18 @@
 require 'sinatra'
 require 'thor'
 require 'watch'
+require 'yaml'
 
 class CLI < Thor
   desc "start FILE", "Start the watch server watching files in FILE."
   method_option :port,:aliases => "-p", :desc => "Webserver port"
   def start(file=nil)
-  	p options
+	servers = YAML.load_file(file)
 	Watch::App.run!(
   		servers:{
   			servers:'foo',
   		},
-		port:option[:port}||4567,
+		port:option[:port]||4567,
 		run:false
 
 	)
