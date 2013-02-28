@@ -9,9 +9,9 @@ module Watch
 	  			p "#{settings.servers} goog"
 	  		}
 	  		p EM
-#	  		EM.add_periodic_timer 10 do
-#	  			poll(url : 'http://eb.dk')
-#	  		end  
+	  		EM.add_periodic_timer 10 do
+	  			poll(url : 'http://eb.dk')
+	  		end  
 		end
 		helpers do
 			def poll(server)
