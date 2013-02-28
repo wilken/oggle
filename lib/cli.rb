@@ -8,12 +8,12 @@ class CLI < Thor
   desc "start", "Start the watch server."
   def start(filename=nil)
 
-  			set :root,  File.expand_path('..', __FILE__)
-		set :views, Proc.new { File.join(root, "views") }
+		set :root,  File.expand_path('..', __FILE__)
+		set :views, Proc.new { File.join(root, "lib/views") }
 		set :server, 'thin'
 		set :sockets, []
 		set :run, false
-		
+
 	Watch::App.run!(
   		servers:{servers:'foo'}
 	)
