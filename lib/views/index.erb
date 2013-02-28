@@ -1,8 +1,22 @@
 <html>
-<head>
-	<title>Watch.</title>
-</head>
-<body>
-helloodddd
-</body>
+  <head>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script>
+      $(document).ready(function(){
+        function debug(str){ $("#debug").append("<p>"+str+"</p>"); };
+
+        ws = new WebSocket("ws://localhost");
+        ws.onmessage = function(evt) { $("#msg").append("<p>"+evt.data+"</p>"); };
+        ws.onclose = function() { debug("socket closed"); };
+        ws.onopen = function() {
+          debug("connected...");
+          ws.send("hello server");
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <div id="debug"></div>
+    <div id="msg"></div>
+  </body>
 </html>
