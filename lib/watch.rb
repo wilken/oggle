@@ -8,7 +8,7 @@ module Watch
 	  		EM.next_tick {
 	  			p "#{settings.servers} goog"
 	  		}
-	  		EM::add_periodic_timer 10 do
+	  		EM.add_periodic_timer 10 do
 	  			poll('http://eb.dk')
 	  		end  
 		end
