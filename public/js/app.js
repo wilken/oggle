@@ -21,14 +21,14 @@ watch.factory('websocket', function($rootScope) {
     }
 })
 
-watch.controller('watchCtrl', function($scope, $websocket) {
-    $websocket.onmessage = function(evt) {
+watch.controller('watchCtrl', function($scope, websocket) {
+    websocket.onmessage = function(evt) {
         console.log(evt)
     };
-    $websocket.onclose = function() { 
+    websocket.onclose = function() { 
         console.log("socket closed"); 
     };
-    $websocket.onopen = function() { 
+    websocket.onopen = function() { 
         console.log("connected...");
         $websocket.send("hello server");
     };
