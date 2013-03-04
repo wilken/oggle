@@ -15,9 +15,9 @@ watch.factory('websocket', function($rootScope) {
         onopen:function(fn) {
             console.log("set onopen")
             ws.onopen = function() {
-                $rootScope.$apply(function() {
+               // $rootScope.$apply(function() {
                     fn();
-                });
+                //});
             }
         },
         onclose: function(fn) {
@@ -39,6 +39,7 @@ watch.controller('watchCtrl', function($scope, websocket) {
         console.log("socket closed"); 
     })
     websocket.onopen(function() { 
+        console.log("connected...");
         websocket.send("hello server");
     })
 
