@@ -13,6 +13,7 @@ watch.factory('websocket', function($rootScope) {
         },
         send: ws.send,
         onopen:function(fn) {
+            console.log("set onopen")
             ws.onopen = function() {
                 $rootScope.$apply(function() {
                     fn();
