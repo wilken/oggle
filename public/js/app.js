@@ -4,6 +4,7 @@ watch.factory('websocket', function($rootScope) {
     var ws = new WebSocket("ws://localhost");
     return {
         onmessage: function(fn) {
+            console.log("set onmessage")
             ws.onmessage = function(evt) {
                 $rootScope.$apply(function() {
                     fn(evt);
