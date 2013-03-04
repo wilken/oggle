@@ -2,7 +2,7 @@ var watch = angular.module('watch', [])
 watch.factory('websocket', function($rootScope) {
     var ws = new WebSocket("ws://localhost");
     return {
-        onmessage: function(evt, fn) {
+        onmessage: function(fn) {
             ws.onmessage = function(evt) {
                 $rootScope.$apply(function() {
                     fn(evt);
@@ -24,7 +24,7 @@ watch.controller('watchCtrl', function($scope, websocket) {
     };
     websocket.onopen = function() { 
         console.log("connected...");
-        $websocket.send("hello server");
+        websocket.send("hello server");
     };
 
 })
