@@ -1,12 +1,6 @@
 var watch = angular.module('watch', [])
 watch.factory('websocket', function($rootScope) {
     var ws = new WebSocket("ws://localhost");
-    ws.onmessage = function(evt) { $("#msg").append("<p>"+evt.data+"</p>"); };
-    ws.onclose = function() { debug("socket closed"); };
-    ws.onopen = function() { 
-        debug("connected...");
-        ws.send("hello server");
-    };
     return {
         onmessage: function(evt, fn) {
             ws.onmessage = function(evt) {
