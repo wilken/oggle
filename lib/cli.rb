@@ -15,7 +15,7 @@ module Watch
 			run: false,
 			server: 'thin',
 			sockets: [],
-			public_folder: Proc.new { File.join(settings.root, "../public") }
+			root: Proc.new { File.join(File.dirname(__FILE__), "..") }
 		)
 	  end
 	end
