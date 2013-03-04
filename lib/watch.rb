@@ -2,6 +2,7 @@ require "watch/version"
 require 'sinatra/base'
 require 'sinatra-websocket'
 require 'em-http-request'
+require 'json'
 
 module Watch 
 	class App < Sinatra::Base
@@ -32,7 +33,7 @@ module Watch
 			else
 			    request.websocket do |ws|
 			    	ws.onopen do
-			        	ws.send("{\"init\" : #{settings.servers.to_json}}")
+			        	ws.send(settings.servers.to_json})
 			        	settings.sockets << ws
 			      	end
 			      	ws.onmessage do |msg|

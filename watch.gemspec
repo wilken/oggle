@@ -22,6 +22,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "em-http-request"
   gem.add_dependency "thin"
   gem.add_dependency "thor"
-  gem.add_dependency "sinatra-websocket"
+  gem.add_dependency "json"
 
 end
