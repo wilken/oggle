@@ -33,14 +33,12 @@ watch.factory('websocket', function($rootScope) {
 watch.controller('watchCtrl', function($scope, websocket) {
     console.log("starting controller")
     websocket.onmessage(function(ws,event) {
-        console.log(event)
+        console.log(event.data)
     })
     websocket.onclose(function(ws, event) { 
         console.log("socket closed"); 
     })
     websocket.onopen(function(ws,event) {
-//        $scope.servers = 
-        console.log(event);
         ws.send("hello server");
     })
 
