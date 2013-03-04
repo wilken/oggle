@@ -14,7 +14,8 @@ module Watch
 	  		port: options[:port]||4567,
 			run: false,
 			server: 'thin',
-			sockets: []
+			sockets: [],
+			public_folder: Proc.new { File.join(settings.root, "public") }
 		)
 	  end
 	end
