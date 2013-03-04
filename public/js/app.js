@@ -39,7 +39,6 @@ watch.controller('watchCtrl', function($scope, websocket) {
         console.log("socket closed"); 
     })
     websocket.onopen(function() { 
-        console.log("connected...");
         websocket.send("hello server");
     })
 
