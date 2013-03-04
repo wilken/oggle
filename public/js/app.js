@@ -12,16 +12,16 @@ watch.factory('websocket', function($rootScope) {
         },
         send: ws.send,
         onopen:function(fn) {
-            ws.onopen = function(evt) {
+            ws.onopen = function() {
                 $rootScope.$apply(function() {
-                    fn(evt);
+                    fn();
                 });
             }
         },
         onclose: function(fn) {
-            ws.onclose = function(evt) {
+            ws.onclose = function() {
                 $rootScope.$apply(function() {
-                    fn(evt);
+                    fn();
                 });
             }
         }
