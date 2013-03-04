@@ -5,7 +5,7 @@ watch.factory('websocket', function($rootScope) {
     return {
         onmessage: function(fn) {
             console.log("set onmessage")
-            ws.onmessage = function(evt) {
+            ws.onmessage = function(event) {
                 $rootScope.$apply(function() {
                     fn(ws,event);
                 });
@@ -14,16 +14,16 @@ watch.factory('websocket', function($rootScope) {
         send: ws.send,
         onopen:function(fn) {
             console.log("set onopen")
-            ws.onopen = function() {
+            ws.onopen = function(event) {
                 $rootScope.$apply(function() {
-                    fn(ws);
+                    fn(ws, event);
                 });
             }
         },
         onclose: function(fn) {
-            ws.onclose = function() {
+            ws.onclose = function(event) {
                 $rootScope.$apply(function() {
-                    fn(ws);
+                    fn(ws,event);
                 });
             }
         }
@@ -35,11 +35,12 @@ watch.controller('watchCtrl', function($scope, websocket) {
     websocket.onmessage(function(ws,event) {
         console.log(event)
     })
-    websocket.onclose(function(ws) { 
+    websocket.onclose(function(ws, event) { 
         console.log("socket closed"); 
     })
-    websocket.onopen(function(ws) { 
-        console.log("connected...");
+    websocket.onopen(function(ws,event) {
+//        $scope.servers = 
+        console.log(event);
         ws.send("hello server");
     })
 

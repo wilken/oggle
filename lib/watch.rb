@@ -32,7 +32,7 @@ module Watch
 			else
 			    request.websocket do |ws|
 			    	ws.onopen do
-			        	ws.send("Hello World!")
+			        	ws.send(settings.servers)
 			        	settings.sockets << ws
 			      	end
 			      	ws.onmessage do |msg|
