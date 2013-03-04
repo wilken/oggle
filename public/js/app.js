@@ -40,7 +40,7 @@ watch.controller('watchCtrl', function($scope, websocket) {
     })
     websocket.onopen(function(ws) { 
         console.log("connected...");
-        ws.send("hello server");
+        this.websocket.send("hello server");
     })
 
 })
