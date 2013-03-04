@@ -29,6 +29,7 @@ watch.factory('websocket', function($rootScope) {
 })
 
 watch.controller('watchCtrl', function($scope, websocket) {
+    console.log("starting controller")
     websocket.onmessage = function(evt) {
         console.log(evt)
     };
