@@ -19,7 +19,7 @@ module Watch
 
       	configure do
 	  		EM.next_tick do
-	  			p "Initializing poll"
+	  			puts "Initializing poll #{settings.root} #{settings.public_folder}"
   				Watch::App.poll(settings.servers)
 	  			EM.add_periodic_timer 10 do
 	  				Watch::App.poll(settings.servers)
