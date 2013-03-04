@@ -33,6 +33,7 @@ watch.factory('websocket', function($rootScope) {
 watch.controller('watchCtrl', function($scope, websocket) {
     console.log("starting controller")
     websocket.onmessage(function(ws,event) {
+        console.log(event.data)
         console.log(JSON.parse(event.data)['init'])
     })
     websocket.onclose(function(ws, event) { 
