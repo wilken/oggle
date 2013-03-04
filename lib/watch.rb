@@ -33,7 +33,7 @@ module Watch
 			else
 			    request.websocket do |ws|
 			    	ws.onopen do
-			        	ws.send(settings.servers.to_json)
+			        	ws.send("{\"servers\" : #{settings.servers.to_json}}")
 			        	settings.sockets << ws
 			      	end
 			      	ws.onmessage do |msg|
