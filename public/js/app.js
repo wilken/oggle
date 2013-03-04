@@ -16,7 +16,7 @@ watch.factory('websocket', function($rootScope) {
             }
         },
         send: ws.send,
-        onopen; ws.onopen.
+        onopen: ws.onopen,
         onclose: ws.onclose
     }
 })
