@@ -34,7 +34,7 @@ watch.controller('watchCtrl', function($scope, websocket) {
     console.log("starting controller")
     websocket.onmessage(function(ws,event) {
         console.log(event.data)
-        console.log(JSON.parse(event.data)['init'])
+        console.log(JSON.parse(event.data)['servers'])
     })
     websocket.onclose(function(ws, event) { 
         console.log("socket closed"); 
