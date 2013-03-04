@@ -1,5 +1,6 @@
 var watch = angular.module('watch', [])
 watch.factory('websocket', function($rootScope) {
+    console.log("initializing websocket")
     var ws = new WebSocket("ws://localhost");
     return {
         onmessage: function(fn) {
