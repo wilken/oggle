@@ -1,4 +1,4 @@
-var watch = angular.module('watch', [])
+var watch = angular.module('Oggle', [])
 watch.factory('websocket', function($rootScope) {
     var ws = new WebSocket("ws://localhost");
     return {
@@ -27,7 +27,7 @@ watch.factory('websocket', function($rootScope) {
     }
 })
 
-watch.controller('watchCtrl', function($scope, websocket) {
+watch.controller('OggleCtrl', function($scope, websocket) {
     console.log("starting controller")
     $scope.servers ={}
     websocket.onmessage(function(ws,event) {

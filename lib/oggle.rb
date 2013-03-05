@@ -1,10 +1,10 @@
-require "watch/version"
+require "oggle/version"
 require 'sinatra/base'
 require 'sinatra-websocket'
 require 'em-http-request'
 require 'json'
 
-module Watch 
+module Oggle 
 	class App < Sinatra::Base
 		def self.poll(servers)
 			servers.each do|server|
@@ -16,16 +16,19 @@ module Watch
 						server:{url: server[1]['url'],
 						status: "error"
 					}}.to_json)}}
+					server[1]['status'] = 'error'
 			    end
 				http.callback do
 					status = 'error'
 					status = 'ok' if http.response.to_s.include?(server[1]['check'])
+					status = rand(3)==1?'error':'ok'
 					EM.next_tick { settings.sockets.each{|s| s.send({
 						type:"update", 
 						name: server[0], 
 						server:{url: server[1]['url'],
-						status: rand(3)==1?'error':'ok'
+						status: status
 					}}.to_json)}}
+					server[1]['status'] = status
 				end
 			end
 		end
@@ -56,7 +59,7 @@ module Watch
 			      	#end
 
 			      	ws.onclose do
-			        	warn("wetbsocket closed")
+			        	warn("websocket closed")
 			        	settings.sockets.delete(ws)
 			      	end
 			    end

@@ -5,9 +5,9 @@ require 'thor'
 require 'watch'
 require 'yaml'
 
-module Watch
+module Oggle
 	class CLI < Thor
-	  desc "start FILE", "Start the watch server watching files in FILE."
+	  desc "start FILE", "Start the Oggle server watching files in FILE."
 	  method_option :port,:aliases => "-p", :desc => "Webserver port"
 	  def start(file)
 		servers = YAML.load_file(file)
@@ -23,4 +23,4 @@ module Watch
 	end
 end
 
-Watch::CLI.start(ARGV)
+Oggle::CLI.start(ARGV)

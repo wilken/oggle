@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'watch/version'
+require 'oggle/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "watch"
+  gem.name          = "oggle"
   gem.version       = Watch::VERSION
   gem.authors       = ["Morten Wilken"]
   gem.email         = ["wilken@ultraplex.org"]
