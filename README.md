@@ -1,24 +1,23 @@
-# Watch
+# Oggle
 
-TODO: Write a gem description
+Oggle is a simple tool to monitor servers. Just point it to a YAML file containing a list of servers and words to check for, and Oggle will monitor the servers uptime and show it on a webpage.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+	gem install oggle
 
-    gem 'watch'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install watch
 
 ## Usage
 
-TODO: Write usage instructions here
+	oggle start [--port <port>] <file.yaml> 
+
+## File format
+
+	servers:
+		<servername>:
+			url:<url>
+			check:<string to check response for>
+		...
 
 ## Contributing
 
