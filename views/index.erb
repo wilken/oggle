@@ -18,7 +18,6 @@
     </script>-->
   </head>
   <body ng-app="watch" ng-controller="watchCtrl">
-    <div id="debug"></div>
-    <div id="msg"></div>
+<li ng-repeat="(key, value) in servers">{{key}}: {{value.url}} {{value.status}}</li>
   </body>
 </html>

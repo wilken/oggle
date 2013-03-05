@@ -8,12 +8,14 @@ module Watch
 	class App < Sinatra::Base
 		def self.poll(servers)
 			servers.each do|server|
-				http = EM::HttpRequest.new(server[1]['url']).get
+				http = EM::HttpRequest.new(server[1]['url']).get :redirects => 5
 			    http.errback do
-					EM.next_tick { settings.sockets.each{|s| s.send("{\"server\":{\"url\":\"#{server[1]['url']}\",\"status\": \"error\"}}") } }
+					EM.next_tick { settings.sockets.each{|s| s.send({type:"update", name: server[0], server:{url: server[1]['url'],status: "error"}}.to_json)}}
 			    end
 				http.callback do
-					EM.next_tick { settings.sockets.each{|s| s.send("{\"server\":{\"url\":\"#{server[1]['url']}\",\"status\": \"ok\"}}") } }
+					status = 'error'
+					status = 'ok' if http.response.to_s.include?(server[1]['check'])
+					EM.next_tick { settings.sockets.each{|s| s.send({type:"update", name: server[0], server:{url: server[1]['url'],status: status}}.to_json)}}
 				end
 			end
 		end
@@ -33,14 +35,14 @@ module Watch
 			else
 			    request.websocket do |ws|
 			    	ws.onopen do
-			        	ws.send("{\"servers\" : #{settings.servers.to_json}}")
+			        	ws.send({type:"init", servers: settings.servers}.to_json)
 			        	settings.sockets << ws
 			      	end
 
 			      	#ws.onmessage do |msg|
 			        #	EM.next_tick { settings.sockets.each{|s| s.send(msg) } }
 			      	#end
-			      	
+
 			      	ws.onclose do
 			        	warn("wetbsocket closed")
 			        	settings.sockets.delete(ws)

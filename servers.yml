@@ -1,9 +1,11 @@
 servers:
- Syddansk:
+ Ekstra bladet:
   url: http://eb.dk
-  status: 200
   check: fodbold
- AU:
+ Politiken:
   url: http://politiken.dk
-  status: 200
   check: fodbold
+ Google:
+  url: https://google.com
+  check: google
+
