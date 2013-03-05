@@ -3,19 +3,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
 	<script src="js/app.js"></script>
-<!--    <script>
-      $(document).ready(function(){
-        function debug(str){ $("#debug").append("<p>"+str+"</p>"); };
-
-        ws = new WebSocket("ws://localhost");
-        ws.onmessage = function(evt) { $("#msg").append("<p>"+evt.data+"</p>"); };
-        ws.onclose = function() { debug("socket closed"); };
-        ws.onopen = function() {
-          debug("connected...");
-          ws.send("hello server");
-        };
-      });
-    </script>-->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
   </head>
   <body ng-app="watch" ng-controller="watchCtrl">
 <li ng-repeat="(key, value) in servers">{{key}}: {{value.url}} {{value.status}}</li>
