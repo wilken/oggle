@@ -35,9 +35,9 @@ module Oggle
 
       	configure do
 	  		EM.next_tick do
-  				Watch::App.poll(settings.servers)
+  				Oggle::App.poll(settings.servers)
 	  			EM.add_periodic_timer 10 do
-	  				Watch::App.poll(settings.servers)
+	  				Oggle::App.poll(settings.servers)
 	  			end  
 	  		end
 		end
