@@ -10,19 +10,28 @@ module Watch
 			servers.each do|server|
 				http = EM::HttpRequest.new(server[1]['url']).get :redirects => 5
 			    http.errback do
-					EM.next_tick { settings.sockets.each{|s| s.send({type:"update", name: server[0], server:{url: server[1]['url'],status: "error"}}.to_json)}}
+					EM.next_tick { settings.sockets.each{|s| s.send({
+						type:"update", 
+						name: server[0], 
+						server:{url: server[1]['url'],
+						status: "error"
+					}}.to_json)}}
 			    end
 				http.callback do
 					status = 'error'
 					status = 'ok' if http.response.to_s.include?(server[1]['check'])
-					EM.next_tick { settings.sockets.each{|s| s.send({type:"update", name: server[0], server:{url: server[1]['url'],status: status}}.to_json)}}
+					EM.next_tick { settings.sockets.each{|s| s.send({
+						type:"update", 
+						name: server[0], 
+						server:{url: server[1]['url'],
+						status: rand(3)==1?'error':'ok'
+					}}.to_json)}}
 				end
 			end
 		end
 
       	configure do
 	  		EM.next_tick do
-	  			puts "Initializing poll #{settings.root} #{settings.public_folder}"
   				Watch::App.poll(settings.servers)
 	  			EM.add_periodic_timer 10 do
 	  				Watch::App.poll(settings.servers)
@@ -35,7 +44,10 @@ module Watch
 			else
 			    request.websocket do |ws|
 			    	ws.onopen do
-			        	ws.send({type:"init", servers: settings.servers}.to_json)
+			        	ws.send({
+			        		type:"init", 
+			        		servers: settings.servers
+			        	}.to_json)
 			        	settings.sockets << ws
 			      	end
 

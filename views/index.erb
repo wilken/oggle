@@ -1,11 +1,25 @@
 <html>
   <head>
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-	<script src="js/app.js"></script>
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  	<script src="js/app.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
   </head>
-  <body ng-app="watch" ng-controller="watchCtrl">
-<li ng-repeat="(key, value) in servers">{{key}}: {{value.url}} {{value.status}}</li>
+  <body class="container" ng-app="watch" ng-controller="watchCtrl" style="margin-top:40px">
+  <table class="table table-striped well">
+  <tr>
+    <th>Server</th>
+    <th>URL</th>
+    <th width="100px">Status</th>
+  </tr>
+  <tr ng:repeat="(key, value) in servers">
+    <td>{{key}}</td>
+    <td>{{value.url}}</td>
+    <td>
+      <span ng-show="value.status=='ok'" class="label label-success">Success</span>
+      <span ng-show="value.status=='error'" class="label label-important">Failed</span>
+    </td>
+  </tr>
+  </table>
   </body>
 </html>
