@@ -47,6 +47,7 @@ module Oggle
 			else
 			    request.websocket do |ws|
 			    	ws.onopen do
+			    		p settings.servers
 			        	ws.send({
 			        		type:"init", 
 			        		servers: settings.servers
