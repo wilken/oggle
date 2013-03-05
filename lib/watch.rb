@@ -10,10 +10,10 @@ module Watch
 			servers.each do|server|
 				http = EM::HttpRequest.new(server[1]['url']).get
 			    http.errback do
-					EM.next_tick { settings.sockets.each{|s| s.send("#{server[1]['url']} ok") } }
+					EM.next_tick { settings.sockets.each{|s| s.send("{\"server\":{\"url\":\"#{server[1]['url']}\",\"status\": \"error\"}}") } }
 			    end
 				http.callback do
-					EM.next_tick { settings.sockets.each{|s| s.send("#{server[1]['url']} ok") } }
+					EM.next_tick { settings.sockets.each{|s| s.send("{\"server\":{\"url\":\"#{server[1]['url']}\",\"status\": \"ok\"}}") } }
 				end
 			end
 		end
@@ -36,9 +36,11 @@ module Watch
 			        	ws.send("{\"servers\" : #{settings.servers.to_json}}")
 			        	settings.sockets << ws
 			      	end
-			      	ws.onmessage do |msg|
-			        	EM.next_tick { settings.sockets.each{|s| s.send(msg) } }
-			      	end
+
+			      	#ws.onmessage do |msg|
+			        #	EM.next_tick { settings.sockets.each{|s| s.send(msg) } }
+			      	#end
+			      	
 			      	ws.onclose do
 			        	warn("wetbsocket closed")
 			        	settings.sockets.delete(ws)
