@@ -1,6 +1,6 @@
 var watch = angular.module('Oggle', [])
-watch.factory('websocket', function($rootScope) {
-    var ws = new WebSocket("ws://localhost");
+watch.factory('websocket', function($rootScope, $location) {
+    var ws = new WebSocket("ws://localhost:"+$location.port());
     return {
         onmessage: function(fn) {
             ws.onmessage = function(event) {

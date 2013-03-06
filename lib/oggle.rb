@@ -21,7 +21,7 @@ module Oggle
 				http.callback do
 					status = 'error'
 					status = 'ok' if http.response.to_s.include?(server[1]['check'])
-					status = rand(3)==1?'error':'ok'
+					#status = rand(3)==1?'error':'ok'
 					EM.next_tick { settings.sockets.each{|s| s.send({
 						type:"update", 
 						name: server[0], 
@@ -43,7 +43,7 @@ module Oggle
 		end
 		get '/' do
 			if !request.websocket?
-				erb :index
+				erb :index, :locals => {:port => settings.port}
 			else
 			    request.websocket do |ws|
 			    	ws.onopen do
