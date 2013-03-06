@@ -16,7 +16,7 @@ module Oggle
 				http.callback do
 					status = 'error'
 					status = 'ok' if http.response.to_s.include?(server[1]['check'])
-					status = rand(3)==1?'error':'ok'
+					#status = rand(3)==1?'error':'ok'
 					EM.next_tick { settings.sockets.each{|s| s.send(create_message(server, status).to_json)}}
 					server[1]['status'] = status
 				end
