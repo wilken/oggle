@@ -13,6 +13,7 @@ module Oggle
 		servers = YAML.load_file(file)
 		Oggle::App.run!(
 			servers: servers['servers'],
+			interval: servers['interval'],
 	  		port: options[:port]||4567,
 			run: false,
 			server: 'thin',

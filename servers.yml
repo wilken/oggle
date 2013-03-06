@@ -1,6 +1,6 @@
 servers:
  Ekstra bladet:
-  url: http://eb.dk
+  url: http://eb.dks
   check: fodbold
  Politiken:
   url: http://politiken.dk
@@ -8,4 +8,4 @@ servers:
  Google:
   url: https://google.com
   check: google
-
+interval: 30

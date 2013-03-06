@@ -10,33 +10,32 @@ module Oggle
 			servers.each do|server|
 				http = EM::HttpRequest.new(server[1]['url']).get :redirects => 5
 			    http.errback do
-					EM.next_tick { settings.sockets.each{|s| s.send({
-						type:"update", 
-						name: server[0], 
-						server:{url: server[1]['url'],
-						status: "error"
-					}}.to_json)}}
+					EM.next_tick { settings.sockets.each{|s| s.send(create_message(server, 'error').to_json)}}
 					server[1]['status'] = 'error'
 			    end
 				http.callback do
 					status = 'error'
 					status = 'ok' if http.response.to_s.include?(server[1]['check'])
-					#status = rand(3)==1?'error':'ok'
-					EM.next_tick { settings.sockets.each{|s| s.send({
-						type:"update", 
-						name: server[0], 
-						server:{url: server[1]['url'],
-						status: status
-					}}.to_json)}}
+					status = rand(3)==1?'error':'ok'
+					EM.next_tick { settings.sockets.each{|s| s.send(create_message(server, status).to_json)}}
 					server[1]['status'] = status
 				end
 			end
 		end
 
+		def self.create_message(server, status)
+			{
+						type:"update", 
+						name: server[0], 
+						server:{url: server[1]['url'],
+						status: status
+			}}
+		end
+
       	configure do
 	  		EM.next_tick do
   				Oggle::App.poll(settings.servers)
-	  			EM.add_periodic_timer 10 do
+	  			EM.add_periodic_timer settings.interval||30 do
 	  				Oggle::App.poll(settings.servers)
 	  			end  
 	  		end
