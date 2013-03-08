@@ -1,6 +1,6 @@
 # Oggle
 
-Oggle is a simple tool to monitor servers. Just point it to a YAML file containing a list of servers and words to check for, and Oggle will monitor the servers uptime and show it on a webpage.
+Oggle is a simple tool for monitoring servers. Just point it to a YAML file containing a list of servers and words to check for, and Oggle will monitor the servers uptime and show it on a webpage.
 
 ## Installation
 
