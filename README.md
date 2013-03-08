@@ -8,6 +8,7 @@ Oggle is a simple tool to monitor servers. Just point it to a YAML file containi
 
 ## Installing on Windows
 To install Oggle on Windows, install the DevKit (https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe) and from the installed dir, run
+
 	ruby dk.rb init
 	ruby dk.rb install
 
